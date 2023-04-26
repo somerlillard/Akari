@@ -69,6 +69,7 @@ public class ModelImpl implements Model {
     }
     boolean isLit = false;
     // checking same row cells
+    // top to mid
     for (int i = 0; i <= r; i++) {
       // if corridor- lamp, no lamp ... if lamp -> lit
       if (p.getCellType(i, c) == CellType.CORRIDOR) {
@@ -85,7 +86,8 @@ public class ModelImpl implements Model {
         return true;
       }
     }
-    for (int i = p.getWidth() - 1; i > r; i--) {
+    // bott to mid
+    for (int i = p.getHeight() - 1; i > r; i--) {
       if (p.getCellType(i, c) == CellType.CORRIDOR) {
         if (_lamps[i][c] == 1) {
           isLit = true;
@@ -97,7 +99,7 @@ public class ModelImpl implements Model {
       }
     }
     // what if there's a wall at the last spot and I switch isLit it false -> only index inward
-    // checking same column cells
+    // left to mid
     for (int j = 0; j <= c; j++) {
       if (p.getCellType(j, c) == CellType.CORRIDOR) {
         if (_lamps[r][j] == 1) {
@@ -111,7 +113,8 @@ public class ModelImpl implements Model {
         return true;
       }
     }
-    for (int j = p.getHeight() - 1; j > c; j--) {
+    // right to mid
+    for (int j = p.getWidth() - 1; j > c; j--) {
       if (p.getCellType(j, c) == CellType.CORRIDOR) {
         if (_lamps[r][j] == 1) {
           isLit = true;
@@ -220,7 +223,7 @@ public class ModelImpl implements Model {
 
   @Override
   public void setActivePuzzleIndex(int index) {
-    if (index > _library.size() || index < 0) {
+    if (index >= _library.size() || index < 0) {
       throw new IndexOutOfBoundsException();
     }
     _activePuzz = index;
