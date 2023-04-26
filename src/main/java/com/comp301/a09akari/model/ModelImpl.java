@@ -68,7 +68,7 @@ public class ModelImpl implements Model {
       throw new IllegalArgumentException();
     }
     boolean isLit = false;
-    // checking same row cells
+    // checking same col cells
     // top to mid
     for (int i = 0; i <= r; i++) {
       // if corridor- lamp, no lamp ... if lamp -> lit
@@ -115,12 +115,12 @@ public class ModelImpl implements Model {
     }
     // right to mid
     for (int j = p.getWidth() - 1; j > c; j--) {
-      if (p.getCellType(j, c) == CellType.CORRIDOR) {
+      if (p.getCellType(r, j) == CellType.CORRIDOR) {
         if (_lamps[r][j] == 1) {
           isLit = true;
         }
       }
-      if (p.getCellType(j, c) == CellType.WALL || p.getCellType(j, c) == CellType.CLUE) {
+      if (p.getCellType(r, j) == CellType.WALL || p.getCellType(j, c) == CellType.CLUE) {
         isLit = false;
       }
     }
