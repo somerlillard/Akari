@@ -168,7 +168,7 @@ public class ModelImpl implements Model {
       return true;
     }
     // col bottom to mid
-    for (int i = p.getWidth() - 1; i > r; i--) {
+    for (int i = p.getHeight() - 1; i > r; i--) {
       if (p.getCellType(i, c) == CellType.CORRIDOR) {
         if (_lamps[i][c] == 1) {
           illegal = true;
@@ -185,12 +185,12 @@ public class ModelImpl implements Model {
     // what if there's a wall at the last spot and I switch isLit it false -> only index inward
     // checking row left to mid
     for (int j = 0; j < c; j++) {
-      if (p.getCellType(j, c) == CellType.CORRIDOR) {
+      if (p.getCellType(r, j) == CellType.CORRIDOR) {
         if (_lamps[r][j] == 1) {
           illegal = true;
         }
       }
-      if (p.getCellType(j, c) == CellType.WALL || p.getCellType(j, c) == CellType.CLUE) {
+      if (p.getCellType(r, j) == CellType.WALL || p.getCellType(r, j) == CellType.CLUE) {
         illegal = false;
       }
     }
@@ -198,13 +198,13 @@ public class ModelImpl implements Model {
       return true;
     }
     // checking row right to mid
-    for (int j = p.getHeight() - 1; j > c; j--) {
-      if (p.getCellType(j, c) == CellType.CORRIDOR) {
+    for (int j = p.getWidth() - 1; j > c; j--) {
+      if (p.getCellType(r, j) == CellType.CORRIDOR) {
         if (_lamps[r][j] == 1) {
           illegal = true;
         }
       }
-      if (p.getCellType(j, c) == CellType.WALL || p.getCellType(j, c) == CellType.CLUE) {
+      if (p.getCellType(r, j) == CellType.WALL || p.getCellType(r, j) == CellType.CLUE) {
         illegal = false;
       }
     }
