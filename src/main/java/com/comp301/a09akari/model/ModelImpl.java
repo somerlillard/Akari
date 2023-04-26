@@ -237,9 +237,9 @@ public class ModelImpl implements Model {
   @Override
   public void resetPuzzle() {
     Puzzle p = _library.getPuzzle(_activePuzz);
-    for (int i = 0; i < p.getWidth(); i++) {
-      for (int j = 0; j < p.getHeight(); i++) {
-        _lamps[i][j] = 0;
+    for (int c = 0; c < p.getWidth(); c++) {
+      for (int r = 0; r < p.getHeight(); r++) {
+        _lamps[r][c] = 0;
       }
     }
     for (ModelObserver m : _observers) {
@@ -250,22 +250,22 @@ public class ModelImpl implements Model {
   @Override
   public boolean isSolved() {
     Puzzle p = _library.getPuzzle(_activePuzz);
-    for (int i = 0; i < p.getHeight(); i++) {
-      for (int j = 0; j < p.getWidth(); j++) {
-        switch (p.getCellType(i, j)) {
+    for (int r = 0; r < p.getHeight(); r++) {
+      for (int c = 0; c < p.getWidth(); c++) {
+        switch (p.getCellType(r, c)) {
           case WALL:
             break;
           case CORRIDOR:
-            if (this.isLamp(i, j)) {
-              if (this.isLampIllegal(i, j)) {
+            if (this.isLamp(r, c)) {
+              if (this.isLampIllegal(r, c)) {
                 return false;
               }
             }
-            if (!this.isLit(i, j)) {
+            if (!this.isLit(r, c)) {
               return false;
             }
           case CLUE:
-            if (!this.isClueSatisfied(i, j)) {
+            if (!this.isClueSatisfied(r, c)) {
               return false;
             }
         }
