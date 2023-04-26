@@ -127,7 +127,7 @@ public class ModelImpl implements Model {
   @Override
   public boolean isLamp(int r, int c) {
     Puzzle p = _library.getPuzzle(_activePuzz);
-    if (r > p.getHeight() || r < 0 || c > p.getWidth() || c < 0) {
+    if (r >= p.getHeight() || r < 0 || c >= p.getWidth() || c < 0) {
       throw new IndexOutOfBoundsException();
     }
     if (p.getCellType(r, c) != CellType.CORRIDOR) {
@@ -220,6 +220,9 @@ public class ModelImpl implements Model {
 
   @Override
   public void setActivePuzzleIndex(int index) {
+    if (index > _library.size() || index < 0) {
+      throw new IndexOutOfBoundsException();
+    }
     _activePuzz = index;
     for (ModelObserver m : _observers) {
       m.update(this);
