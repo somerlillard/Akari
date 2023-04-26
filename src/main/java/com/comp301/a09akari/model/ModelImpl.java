@@ -107,7 +107,7 @@ public class ModelImpl implements Model {
       if (p.getCellType(j, c) == CellType.WALL || p.getCellType(j, c) == CellType.CLUE) {
         isLit = false;
       }
-      if (j == r && isLit) {
+      if (j == c && isLit) {
         return true;
       }
     }
@@ -127,7 +127,7 @@ public class ModelImpl implements Model {
   @Override
   public boolean isLamp(int r, int c) {
     Puzzle p = _library.getPuzzle(_activePuzz);
-    if (r >= p.getHeight() || r < 0 || c >= p.getWidth() || c < 0) {
+    if (r > p.getHeight() || r < 0 || c > p.getWidth() || c < 0) {
       throw new IndexOutOfBoundsException();
     }
     if (p.getCellType(r, c) != CellType.CORRIDOR) {
@@ -284,33 +284,67 @@ public class ModelImpl implements Model {
       throw new IllegalArgumentException();
     }
     int numLamps = 0;
+    boolean ri = true;
+    boolean l = true;
+    boolean top = true;
+    boolean bott = true;
+    if (r - 1 < 0) {
+      top = false;
+    }
+    if (r + 1 > p.getHeight()) {
+      bott = false;
+    }
+    if (c - 1 < 0) {
+      l = false;
+    }
+    if (c + 1 > p.getWidth()) {
+      ri = false;
+    }
     // if 0 lamps allowed
     if (p.getClue(r, c) == 0) {
-      if (this.isLamp(r - 1, c) || this.isLamp(r + 1, c)) {
-        return false;
+      if (top) {
+        if (this.isLamp(r - 1, c)) {
+          return false;
+        }
       }
-      if (this.isLamp(r, c - 1) || this.isLamp(r, c + 1)) {
-        return false;
+      if (bott) {
+        if (this.isLamp(r + 1, c)) {
+          return false;
+        }
+      }
+      if (l) {
+        if (this.isLamp(r, c - 1)) {
+          return false;
+        }
+      }
+      if (ri) {
+        if (this.isLamp(r, c + 1)) {
+          return false;
+        }
       }
       return true;
     }
     // if 1 lamp allowed
     if (p.getClue(r, c) == 1) {
-      // left
-      if (this.isLamp(r - 1, c)) {
-        numLamps++;
+      if (top) {
+        if (this.isLamp(r - 1, c)) {
+          numLamps++;
+        }
       }
-      // right
-      if (this.isLamp(r + 1, c)) {
-        numLamps++;
+      if (bott) {
+        if (this.isLamp(r + 1, c)) {
+          numLamps++;
+        }
       }
-      // up - what if no cell above
-      if (this.isLamp(r, c - 1)) {
-        numLamps++;
+      if (l) {
+        if (this.isLamp(r, c - 1)) {
+          numLamps++;
+        }
       }
-      // down
-      if (this.isLamp(r, c + 1)) {
-        numLamps++;
+      if (ri) {
+        if (this.isLamp(r, c + 1)) {
+          numLamps++;
+        }
       }
       if (numLamps == 1) {
         return true;
@@ -318,20 +352,26 @@ public class ModelImpl implements Model {
     }
     // if 2 lamps allowed
     if (p.getClue(r, c) == 2) {
-      if (this.isLamp(r - 1, c)) {
-        numLamps++;
+      if (top) {
+        if (this.isLamp(r - 1, c)) {
+          numLamps++;
+        }
       }
-      // right
-      if (this.isLamp(r + 1, c)) {
-        numLamps++;
+      if (bott) {
+        if (this.isLamp(r + 1, c)) {
+          numLamps++;
+        }
       }
       // up - what if no cell above
-      if (this.isLamp(r, c - 1)) {
-        numLamps++;
+      if (l) {
+        if (this.isLamp(r, c - 1)) {
+          numLamps++;
+        }
       }
-      // down
-      if (this.isLamp(r, c + 1)) {
-        numLamps++;
+      if (ri) {
+        if (this.isLamp(r, c + 1)) {
+          numLamps++;
+        }
       }
       if (numLamps == 2) {
         return true;
@@ -339,20 +379,25 @@ public class ModelImpl implements Model {
     }
     // if 3 lamps
     if (p.getClue(r, c) == 3) {
-      if (this.isLamp(r - 1, c)) {
-        numLamps++;
+      if (top) {
+        if (this.isLamp(r - 1, c)) {
+          numLamps++;
+        }
       }
-      // right
-      if (this.isLamp(r + 1, c)) {
-        numLamps++;
+      if (bott) {
+        if (this.isLamp(r + 1, c)) {
+          numLamps++;
+        }
       }
-      // up - what if no cell above
-      if (this.isLamp(r, c - 1)) {
-        numLamps++;
+      if (l) {
+        if (this.isLamp(r, c - 1)) {
+          numLamps++;
+        }
       }
-      // down
-      if (this.isLamp(r, c + 1)) {
-        numLamps++;
+      if (ri) {
+        if (this.isLamp(r, c + 1)) {
+          numLamps++;
+        }
       }
       if (numLamps == 3) {
         return true;
@@ -360,20 +405,25 @@ public class ModelImpl implements Model {
     }
     // if 4 lamps
     if (p.getClue(r, c) == 4) {
-      if (this.isLamp(r - 1, c)) {
-        numLamps++;
+      if (top) {
+        if (this.isLamp(r - 1, c)) {
+          numLamps++;
+        }
       }
-      // right
-      if (this.isLamp(r + 1, c)) {
-        numLamps++;
+      if (bott) {
+        if (this.isLamp(r + 1, c)) {
+          numLamps++;
+        }
       }
-      // up - what if no cell above
-      if (this.isLamp(r, c - 1)) {
-        numLamps++;
+      if (l) {
+        if (this.isLamp(r, c - 1)) {
+          numLamps++;
+        }
       }
-      // down
-      if (this.isLamp(r, c + 1)) {
-        numLamps++;
+      if (ri) {
+        if (this.isLamp(r, c + 1)) {
+          numLamps++;
+        }
       }
       if (numLamps == 4) {
         return true;
