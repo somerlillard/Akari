@@ -106,7 +106,7 @@ public class ModelImpl implements Model {
           isLit = true;
         }
       }
-      if (p.getCellType(j, c) == CellType.WALL || p.getCellType(j, c) == CellType.CLUE) {
+      if (p.getCellType(r, j) == CellType.WALL || p.getCellType(r, j) == CellType.CLUE) {
         isLit = false;
       }
       if (j == c && isLit) {
@@ -120,7 +120,7 @@ public class ModelImpl implements Model {
           isLit = true;
         }
       }
-      if (p.getCellType(r, j) == CellType.WALL || p.getCellType(j, c) == CellType.CLUE) {
+      if (p.getCellType(r, j) == CellType.WALL || p.getCellType(r, j) == CellType.CLUE) {
         isLit = false;
       }
     }
