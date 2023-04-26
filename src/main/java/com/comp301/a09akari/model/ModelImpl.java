@@ -267,10 +267,12 @@ public class ModelImpl implements Model {
             if (!this.isLit(r, c)) {
               return false;
             }
+            break;
           case CLUE:
             if (!this.isClueSatisfied(r, c)) {
               return false;
             }
+            break;
         }
       }
     }
