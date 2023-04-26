@@ -101,7 +101,7 @@ public class ModelImpl implements Model {
     // what if there's a wall at the last spot and I switch isLit it false -> only index inward
     // left to mid
     for (int j = 0; j <= c; j++) {
-      if (p.getCellType(j, c) == CellType.CORRIDOR) {
+      if (p.getCellType(r, j) == CellType.CORRIDOR) {
         if (_lamps[r][j] == 1) {
           isLit = true;
         }
