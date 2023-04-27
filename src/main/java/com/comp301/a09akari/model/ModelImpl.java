@@ -316,14 +316,14 @@ public class ModelImpl implements Model {
     // if 0 lamps allowed
     if (p.getClue(r, c) == 0) {
       if (top) {
-        if (p.getCellType(r-1, c) == CellType.CORRIDOR) {
+        if (p.getCellType(r - 1, c) == CellType.CORRIDOR) {
           if (this.isLamp(r - 1, c)) {
             return false;
           }
         }
       }
       if (bott) {
-        if (p.getCellType(r+1, c) == CellType.CORRIDOR) {
+        if (p.getCellType(r + 1, c) == CellType.CORRIDOR) {
           if (this.isLamp(r + 1, c)) {
             return false;
           }
@@ -348,14 +348,14 @@ public class ModelImpl implements Model {
     // if 1 lamp allowed
     if (p.getClue(r, c) == 1) {
       if (top) {
-        if (p.getCellType(r-1, c) == CellType.CORRIDOR) {
+        if (p.getCellType(r - 1, c) == CellType.CORRIDOR) {
           if (this.isLamp(r - 1, c)) {
             numLamps++;
           }
         }
       }
       if (bott) {
-        if (p.getCellType(r+1, c) == CellType.CORRIDOR) {
+        if (p.getCellType(r + 1, c) == CellType.CORRIDOR) {
           if (this.isLamp(r + 1, c)) {
             numLamps++;
           }
@@ -382,14 +382,14 @@ public class ModelImpl implements Model {
     // if 2 lamps allowed
     if (p.getClue(r, c) == 2) {
       if (top) {
-        if (p.getCellType(r -1, c) == CellType.CORRIDOR) {
+        if (p.getCellType(r - 1, c) == CellType.CORRIDOR) {
           if (this.isLamp(r - 1, c)) {
             numLamps++;
           }
         }
       }
       if (bott) {
-        if (p.getCellType(r +1, c) == CellType.CORRIDOR) {
+        if (p.getCellType(r + 1, c) == CellType.CORRIDOR) {
           if (this.isLamp(r + 1, c)) {
             numLamps++;
           }
@@ -417,14 +417,14 @@ public class ModelImpl implements Model {
     // if 3 lamps
     if (p.getClue(r, c) == 3) {
       if (top) {
-        if (p.getCellType(r-1, c) == CellType.CORRIDOR) {
+        if (p.getCellType(r - 1, c) == CellType.CORRIDOR) {
           if (this.isLamp(r - 1, c)) {
             numLamps++;
           }
         }
       }
       if (bott) {
-        if (p.getCellType(r +1, c) == CellType.CORRIDOR) {
+        if (p.getCellType(r + 1, c) == CellType.CORRIDOR) {
           if (this.isLamp(r + 1, c)) {
             numLamps++;
           }
@@ -451,14 +451,14 @@ public class ModelImpl implements Model {
     // if 4 lamps
     if (p.getClue(r, c) == 4) {
       if (top) {
-        if (p.getCellType(r -1, c) == CellType.CORRIDOR) {
+        if (p.getCellType(r - 1, c) == CellType.CORRIDOR) {
           if (this.isLamp(r - 1, c)) {
             numLamps++;
           }
         }
       }
       if (bott) {
-        if (p.getCellType(r +1, c) == CellType.CORRIDOR) {
+        if (p.getCellType(r + 1, c) == CellType.CORRIDOR) {
           if (this.isLamp(r + 1, c)) {
             numLamps++;
           }

@@ -40,5 +40,4 @@ public class AppLauncher extends Application {
     // display stage
     stage.show();
   }
-
 }

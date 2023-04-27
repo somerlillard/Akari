@@ -44,7 +44,6 @@ public class PuzzleView implements FXComponent, ModelObserver {
     grid.getChildren().clear();
     Puzzle p = model.getActivePuzzle();
 
-
     // setting grid styles
     for (int r = 0; r < p.getHeight(); r++) {
       for (int c = 0; c < p.getWidth(); c++) {
@@ -71,7 +70,7 @@ public class PuzzleView implements FXComponent, ModelObserver {
               button.setMaxHeight(10);
               button.setGraphic(RLview);
             } else {
-                // legal lamp style
+              // legal lamp style
               button.setId("LLbutton");
               button.setPrefSize(5, 5);
               button.setGraphic(Lview);
@@ -93,9 +92,9 @@ public class PuzzleView implements FXComponent, ModelObserver {
           }
           // setting on action new lamp in cell is either legal or illegal
           button.setOnAction(
-                  (ActionEvent event) -> {
-                    controller.clickCell(finalR, finalC);
-                  });
+              (ActionEvent event) -> {
+                controller.clickCell(finalR, finalC);
+              });
         }
         // no buttons below here!
         if (p.getCellType(r, c) == CellType.CLUE) {
@@ -134,11 +133,11 @@ public class PuzzleView implements FXComponent, ModelObserver {
         }
       }
     }
-//    if(p.getCellType(2, 2) == CellType.CORRIDOR){
-//      if(model.isLit(2, 2)){
-//        throw new IllegalArgumentException();
-//      }
-//    }
+    //    if(p.getCellType(2, 2) == CellType.CORRIDOR){
+    //      if(model.isLit(2, 2)){
+    //        throw new IllegalArgumentException();
+    //      }
+    //    }
     return grid;
   }
 

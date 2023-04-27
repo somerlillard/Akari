@@ -8,34 +8,35 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
 public class MainView implements FXComponent, ModelObserver {
-    private FXComponent PuzzleView;
-    private FXComponent ControlView;
-    private FXComponent MessageView;
-    private Scene scene;
+  private FXComponent PuzzleView;
+  private FXComponent ControlView;
+  private FXComponent MessageView;
+  private Scene scene;
 
-    public MainView(Model model, ClassicMvcController controller){
-        this.PuzzleView = new PuzzleView(model, controller);
-        this.ControlView = new ControlView(model, controller);
-        this.MessageView = new MessageView(model, controller);
-        this.scene = new Scene(render());
-        scene.getStylesheets().add("main.css");
-        model.addObserver(this);
-    }
-    @Override
-    public void update(Model model) {
-        scene.setRoot(render());
-    }
+  public MainView(Model model, ClassicMvcController controller) {
+    this.PuzzleView = new PuzzleView(model, controller);
+    this.ControlView = new ControlView(model, controller);
+    this.MessageView = new MessageView(model, controller);
+    this.scene = new Scene(render());
+    scene.getStylesheets().add("main.css");
+    model.addObserver(this);
+  }
 
-    public Scene getScene(){
-        return scene;
-    }
+  @Override
+  public void update(Model model) {
+    scene.setRoot(render());
+  }
 
-    @Override
-    public Parent render() {
-        BorderPane pane = new BorderPane();
-        pane.setTop(MessageView.render());
-        pane.setBottom(ControlView.render());
-        pane.setCenter(PuzzleView.render());
-        return pane;
-    }
+  public Scene getScene() {
+    return scene;
+  }
+
+  @Override
+  public Parent render() {
+    BorderPane pane = new BorderPane();
+    pane.setTop(MessageView.render());
+    pane.setBottom(ControlView.render());
+    pane.setCenter(PuzzleView.render());
+    return pane;
+  }
 }

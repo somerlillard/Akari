@@ -16,12 +16,12 @@ public class ControllerImpl implements ClassicMvcController {
   @Override
   public void clickNextPuzzle() {
     // if next is null -> keep the same index
-      int index = _model.getActivePuzzleIndex();
-    if (index + 1 > _model.getPuzzleLibrarySize()){
-        _model.setActivePuzzleIndex(index);
+    int index = _model.getActivePuzzleIndex();
+    if (index + 1 > _model.getPuzzleLibrarySize()) {
+      _model.setActivePuzzleIndex(index);
     } else {
       _model.setActivePuzzleIndex(_model.getActivePuzzleIndex() + 1);
-      }
+    }
   }
 
   @Override
@@ -40,7 +40,7 @@ public class ControllerImpl implements ClassicMvcController {
     // tried to give random number
     Random rand = new Random();
     int randint = rand.nextInt(_model.getPuzzleLibrarySize());
-    while(randint == _model.getActivePuzzleIndex()){
+    while (randint == _model.getActivePuzzleIndex()) {
       randint = rand.nextInt(_model.getPuzzleLibrarySize());
     }
     _model.setActivePuzzleIndex(randint);
