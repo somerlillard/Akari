@@ -30,7 +30,7 @@ public class ModelImpl implements Model {
   @Override
   public void addLamp(int r, int c) {
     Puzzle p = _library.getPuzzle(_activePuzz);
-    if (r > p.getHeight() || r < 0 || c > p.getWidth() || c < 0) {
+    if (r >= p.getHeight() || r < 0 || c >= p.getWidth() || c < 0) {
       throw new IndexOutOfBoundsException();
     }
     if (p.getCellType(r, c) != CellType.CORRIDOR) {
@@ -46,7 +46,7 @@ public class ModelImpl implements Model {
   @Override
   public void removeLamp(int r, int c) {
     Puzzle p = _library.getPuzzle(_activePuzz);
-    if (r > p.getHeight() || r < 0 || c > p.getWidth() || c < 0) {
+    if (r >= p.getHeight() || r < 0 || c >= p.getWidth() || c < 0) {
       throw new IndexOutOfBoundsException();
     }
     if (p.getCellType(r, c) != CellType.CORRIDOR) {
@@ -61,7 +61,7 @@ public class ModelImpl implements Model {
   @Override
   public boolean isLit(int r, int c) {
     Puzzle p = _library.getPuzzle(_activePuzz);
-    if (r > p.getHeight() || r < 0 || c > p.getWidth() || c < 0) {
+    if (r >= p.getHeight() || r < 0 || c >= p.getWidth() || c < 0) {
       throw new IndexOutOfBoundsException();
     }
     if (p.getCellType(r, c) != CellType.CORRIDOR) {
@@ -227,6 +227,14 @@ public class ModelImpl implements Model {
       throw new IndexOutOfBoundsException();
     }
     _activePuzz = index;
+    int r = _library.getPuzzle(_activePuzz).getHeight();
+    int c = _library.getPuzzle(_activePuzz).getWidth();
+    _lamps = new int[r][c];
+    for (int i = 0; i < r; i++) {
+      for (int j = 0; j < c; j++) {
+        _lamps[i][j] = 0;
+      }
+    }
     for (ModelObserver m : _observers) {
       m.update(this);
     }
@@ -296,35 +304,43 @@ public class ModelImpl implements Model {
     if (r - 1 < 0) {
       top = false;
     }
-    if (r + 1 > p.getHeight()) {
+    if (r + 1 >= p.getHeight()) {
       bott = false;
     }
     if (c - 1 < 0) {
       l = false;
     }
-    if (c + 1 > p.getWidth()) {
+    if (c + 1 >= p.getWidth()) {
       ri = false;
     }
     // if 0 lamps allowed
     if (p.getClue(r, c) == 0) {
       if (top) {
-        if (this.isLamp(r - 1, c)) {
-          return false;
+        if (p.getCellType(r-1, c) == CellType.CORRIDOR) {
+          if (this.isLamp(r - 1, c)) {
+            return false;
+          }
         }
       }
       if (bott) {
-        if (this.isLamp(r + 1, c)) {
-          return false;
+        if (p.getCellType(r+1, c) == CellType.CORRIDOR) {
+          if (this.isLamp(r + 1, c)) {
+            return false;
+          }
         }
       }
       if (l) {
-        if (this.isLamp(r, c - 1)) {
-          return false;
+        if (p.getCellType(r, c - 1) == CellType.CORRIDOR) {
+          if (this.isLamp(r, c - 1)) {
+            return false;
+          }
         }
       }
       if (ri) {
-        if (this.isLamp(r, c + 1)) {
-          return false;
+        if (p.getCellType(r, c + 1) == CellType.CORRIDOR) {
+          if (this.isLamp(r, c + 1)) {
+            return false;
+          }
         }
       }
       return true;
@@ -332,23 +348,31 @@ public class ModelImpl implements Model {
     // if 1 lamp allowed
     if (p.getClue(r, c) == 1) {
       if (top) {
-        if (this.isLamp(r - 1, c)) {
-          numLamps++;
+        if (p.getCellType(r-1, c) == CellType.CORRIDOR) {
+          if (this.isLamp(r - 1, c)) {
+            numLamps++;
+          }
         }
       }
       if (bott) {
-        if (this.isLamp(r + 1, c)) {
-          numLamps++;
+        if (p.getCellType(r+1, c) == CellType.CORRIDOR) {
+          if (this.isLamp(r + 1, c)) {
+            numLamps++;
+          }
         }
       }
       if (l) {
-        if (this.isLamp(r, c - 1)) {
-          numLamps++;
+        if (p.getCellType(r, c - 1) == CellType.CORRIDOR) {
+          if (this.isLamp(r, c - 1)) {
+            numLamps++;
+          }
         }
       }
       if (ri) {
-        if (this.isLamp(r, c + 1)) {
-          numLamps++;
+        if (p.getCellType(r, c + 1) == CellType.CORRIDOR) {
+          if (this.isLamp(r, c + 1)) {
+            numLamps++;
+          }
         }
       }
       if (numLamps == 1) {
@@ -358,24 +382,32 @@ public class ModelImpl implements Model {
     // if 2 lamps allowed
     if (p.getClue(r, c) == 2) {
       if (top) {
-        if (this.isLamp(r - 1, c)) {
-          numLamps++;
+        if (p.getCellType(r -1, c) == CellType.CORRIDOR) {
+          if (this.isLamp(r - 1, c)) {
+            numLamps++;
+          }
         }
       }
       if (bott) {
-        if (this.isLamp(r + 1, c)) {
-          numLamps++;
+        if (p.getCellType(r +1, c) == CellType.CORRIDOR) {
+          if (this.isLamp(r + 1, c)) {
+            numLamps++;
+          }
         }
       }
       // up - what if no cell above
       if (l) {
-        if (this.isLamp(r, c - 1)) {
-          numLamps++;
+        if (p.getCellType(r, c - 1) == CellType.CORRIDOR) {
+          if (this.isLamp(r, c - 1)) {
+            numLamps++;
+          }
         }
       }
       if (ri) {
-        if (this.isLamp(r, c + 1)) {
-          numLamps++;
+        if (p.getCellType(r, c + 1) == CellType.CORRIDOR) {
+          if (this.isLamp(r, c + 1)) {
+            numLamps++;
+          }
         }
       }
       if (numLamps == 2) {
@@ -385,23 +417,31 @@ public class ModelImpl implements Model {
     // if 3 lamps
     if (p.getClue(r, c) == 3) {
       if (top) {
-        if (this.isLamp(r - 1, c)) {
-          numLamps++;
+        if (p.getCellType(r-1, c) == CellType.CORRIDOR) {
+          if (this.isLamp(r - 1, c)) {
+            numLamps++;
+          }
         }
       }
       if (bott) {
-        if (this.isLamp(r + 1, c)) {
-          numLamps++;
+        if (p.getCellType(r +1, c) == CellType.CORRIDOR) {
+          if (this.isLamp(r + 1, c)) {
+            numLamps++;
+          }
         }
       }
       if (l) {
-        if (this.isLamp(r, c - 1)) {
-          numLamps++;
+        if (p.getCellType(r, c - 1) == CellType.CORRIDOR) {
+          if (this.isLamp(r, c - 1)) {
+            numLamps++;
+          }
         }
       }
       if (ri) {
-        if (this.isLamp(r, c + 1)) {
-          numLamps++;
+        if (p.getCellType(r, c + 1) == CellType.CORRIDOR) {
+          if (this.isLamp(r, c + 1)) {
+            numLamps++;
+          }
         }
       }
       if (numLamps == 3) {
@@ -411,23 +451,31 @@ public class ModelImpl implements Model {
     // if 4 lamps
     if (p.getClue(r, c) == 4) {
       if (top) {
-        if (this.isLamp(r - 1, c)) {
-          numLamps++;
+        if (p.getCellType(r -1, c) == CellType.CORRIDOR) {
+          if (this.isLamp(r - 1, c)) {
+            numLamps++;
+          }
         }
       }
       if (bott) {
-        if (this.isLamp(r + 1, c)) {
-          numLamps++;
+        if (p.getCellType(r +1, c) == CellType.CORRIDOR) {
+          if (this.isLamp(r + 1, c)) {
+            numLamps++;
+          }
         }
       }
       if (l) {
-        if (this.isLamp(r, c - 1)) {
-          numLamps++;
+        if (p.getCellType(r, c - 1) == CellType.CORRIDOR) {
+          if (this.isLamp(r, c - 1)) {
+            numLamps++;
+          }
         }
       }
       if (ri) {
-        if (this.isLamp(r, c + 1)) {
-          numLamps++;
+        if (p.getCellType(r, c + 1) == CellType.CORRIDOR) {
+          if (this.isLamp(r, c + 1)) {
+            numLamps++;
+          }
         }
       }
       if (numLamps == 4) {

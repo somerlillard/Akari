@@ -1,3 +1,41 @@
+.GridPane{
+    -fx-padding: 20;
+}
+.hbox{
+    -fx-padding: 20;
+    -fx-spacing: 10;
+}
+.button{
+    -fx-border-radius: 5;
+    -fx-padding: 10 20 10 20;
+}
+
+#ClueText{
+    -fx-spacing: 5;
+    -fx-padding: 0 0 0 12;
+}
+#LLbutton{
+    -fx-border-radius: 5;
+    -fx-padding: 10 20 10 20;
+    -fx-background-color: #ffff00;
+    /*-fx-background-image: url("light-bulb.png");*/
+}
+#ILbutton{
+    -fx-border-radius: 5;
+        -fx-padding: 10 20 10 20;
+        -fx-background-color: #ffff00;
+}
+#Litbutton{
+    -fx-border-radius: 5;
+    -fx-border-color: #000000;
+    -fx-padding: 10 20 10 20;
+    -fx-background-color: #ffff00;
+
+}
+.rectangle{
+    -fx-spacing: 10;
+    -fx-padding: 10 20 10 20;
+}
 /**
  * Write CSS code in this file to style your JavaFX user interface
  *
