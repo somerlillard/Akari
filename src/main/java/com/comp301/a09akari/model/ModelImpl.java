@@ -86,6 +86,9 @@ public class ModelImpl implements Model {
         return true;
       }
     }
+    if(isLit){
+      return true;
+    }
     // bott to mid
     for (int i = p.getHeight() - 1; i > r; i--) {
       if (p.getCellType(i, c) == CellType.CORRIDOR) {
@@ -97,6 +100,9 @@ public class ModelImpl implements Model {
       if (p.getCellType(i, c) == CellType.WALL || p.getCellType(i, c) == CellType.CLUE) {
         isLit = false;
       }
+    }
+    if(isLit){
+      return true;
     }
     // what if there's a wall at the last spot and I switch isLit it false -> only index inward
     // left to mid
@@ -112,6 +118,9 @@ public class ModelImpl implements Model {
       if (j == c && isLit) {
         return true;
       }
+    }
+    if(isLit){
+      return true;
     }
     // right to mid
     for (int j = p.getWidth() - 1; j > c; j--) {

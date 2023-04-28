@@ -29,13 +29,20 @@ public class MessageView implements FXComponent, ModelObserver {
     pane.getChildren().clear();
     pane.setAlignment(Pos.CENTER);
     Label title = new Label("Akari");
-    title.setFont(new Font("Arial", 30));
+    title.setFont(new Font("Arial", 40));
     Label PuzzleIndex =
-        new Label("Puzzle: " + (Integer.toString(model.getActivePuzzleIndex() + 1)));
+        new Label("Puzzles Available: " + Integer.toString(model.getPuzzleLibrarySize()));
+    PuzzleIndex.setId("PuzzleIndex");
+    Label PuzzleSize =
+        new Label("Current Puzzle: " + (Integer.toString(model.getActivePuzzleIndex() + 1)));
+    PuzzleSize.setFont(new Font("Arial", 10));
     PuzzleIndex.setFont(new Font("Arial", 10));
     pane.getChildren().add(title);
+    pane.getChildren().add(PuzzleSize);
     pane.getChildren().add(PuzzleIndex);
     Label win = new Label("You win! Congrats!");
+    win.setFont(new Font("Arial", 30));
+    win.setId("win");
     if (model.isSolved()) {
       pane.getChildren().add(win);
     }

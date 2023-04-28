@@ -45,18 +45,22 @@ public class ControlView implements FXComponent, ModelObserver {
     if (prev == null) {
       prev = new Button("Previous puzzle");
       prev.setOnAction((ActionEvent event) -> controller.clickPrevPuzzle());
+      prev.setId("prev");
     }
     if (next == null) {
       next = new Button("Next puzzle");
       next.setOnAction((ActionEvent event) -> controller.clickNextPuzzle());
+      next.setId("next");
     }
     if (rand == null) {
       rand = new Button("Random puzzle");
       rand.setOnAction((ActionEvent event) -> controller.clickRandPuzzle());
+      rand.setId("rand");
     }
     if (reset == null) {
       reset = new Button("Reset puzzle");
       reset.setOnAction((ActionEvent event) -> controller.clickResetPuzzle());
+      reset.setId("reset");
     }
     mpane.getChildren().add(pane1);
     mpane.getChildren().add(pane2);

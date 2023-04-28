@@ -6,6 +6,7 @@ import com.comp301.a09akari.model.Model;
 import com.comp301.a09akari.model.ModelObserver;
 import com.comp301.a09akari.model.Puzzle;
 import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -13,8 +14,7 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.TextAlignment;
@@ -24,7 +24,6 @@ public class PuzzleView implements FXComponent, ModelObserver {
   private ClassicMvcController controller;
 
   // Button changing sizes on click issue
-  // some lit boxes aren't lighting
   // window doesn't change size while changing puzzles
   // rectangles not smooth with buttons - shouldn't matter too much I think
 
@@ -41,6 +40,9 @@ public class PuzzleView implements FXComponent, ModelObserver {
   public Parent render() {
     // setting grid & puzzle
     GridPane grid = new GridPane();
+    grid.setAlignment(Pos.CENTER);
+    grid.setPadding(new Insets(0, 90, 45, 90));
+    grid.setGridLinesVisible(true);
     grid.getChildren().clear();
     Puzzle p = model.getActivePuzzle();
 
@@ -66,13 +68,27 @@ public class PuzzleView implements FXComponent, ModelObserver {
             if (model.isLampIllegal(r, c)) {
               // illegal lamp style
               button.setId("ILbutton");
-              button.setMaxWidth(10);
-              button.setMaxHeight(10);
+              //              button.setMaxWidth(10);
+              //              button.setMaxHeight(10);
+              RLview.setFitWidth(30);
+              RLview.setFitHeight(30);
+              RLview.setPreserveRatio(true);
               button.setGraphic(RLview);
             } else {
               // legal lamp style
               button.setId("LLbutton");
-              button.setPrefSize(5, 5);
+              //              button.setMaxHeight(5);
+              //              button.setMaxWidth(3);
+              //              button.setPrefSize(5, 5);
+              //              Image lightbulb = new Image("light-bulb.png");
+              //              BackgroundImage bulb = new BackgroundImage(lightbulb,
+              // BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+              // BackgroundSize.DEFAULT);
+              //              Background back = new Background(bulb);
+              //              button.setBackground(back);
+              Lview.setFitWidth(20);
+              Lview.setFitHeight(20);
+              Lview.setPreserveRatio(true);
               button.setGraphic(Lview);
             }
             grid.add(button, c, r);
@@ -85,6 +101,7 @@ public class PuzzleView implements FXComponent, ModelObserver {
               button.setMaxHeight(10);
             } else {
               // regular unlit button
+              button.setId("Unlitbutton");
               button.setMaxWidth(10);
               button.setMaxHeight(10);
             }
@@ -133,11 +150,6 @@ public class PuzzleView implements FXComponent, ModelObserver {
         }
       }
     }
-    //    if(p.getCellType(2, 2) == CellType.CORRIDOR){
-    //      if(model.isLit(2, 2)){
-    //        throw new IllegalArgumentException();
-    //      }
-    //    }
     return grid;
   }
 

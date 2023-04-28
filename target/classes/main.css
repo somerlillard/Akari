@@ -5,36 +5,60 @@
     -fx-padding: 20;
     -fx-spacing: 10;
 }
-.button{
+#Unlitbutton{
     -fx-border-radius: 5;
     -fx-padding: 10 20 10 20;
 }
-
+#Litbutton{
+    -fx-border-radius: 2;
+    -fx-border-color: #000000;
+    -fx-padding: 10 20 10 20;
+    -fx-background-color: #ffff00;
+}
+#scene{
+    -fx-background-color: #000000;
+}
+#PuzzleIndex{
+    -fx-padding: 5 5 5 5;
+}
 #ClueText{
     -fx-spacing: 5;
     -fx-padding: 0 0 0 12;
 }
 #LLbutton{
-    -fx-border-radius: 5;
-    -fx-padding: 10 20 10 20;
+    -fx-border-radius: 1;
+    -fx-border-color: #000000;
+    -fx-padding: 10 10 10 10;
     -fx-background-color: #ffff00;
-    /*-fx-background-image: url("light-bulb.png");*/
+   /* -fx-border-radius: 3;
+   -fx-background-image: url("light-bulb.png");
+    -fx-background-size: 10px 10px;*/
 }
 #ILbutton{
-    -fx-border-radius: 5;
-        -fx-padding: 10 20 10 20;
+       /* -fx-border-radius: 5;
+        -fx-padding: 10 20 10 20; */
+        -fx-padding: 5 5 5 5;
+        -fx-border-color: #000000;
         -fx-background-color: #ffff00;
-}
-#Litbutton{
-    -fx-border-radius: 5;
-    -fx-border-color: #000000;
-    -fx-padding: 10 20 10 20;
-    -fx-background-color: #ffff00;
-
 }
 .rectangle{
     -fx-spacing: 10;
     -fx-padding: 10 20 10 20;
+}
+#win{
+    -fx-padding: 20 20 0 20;
+}
+#prev{
+    -fx-padding: 30 50 30 50;
+}
+#next{
+    -fx-padding: 30 50 30 50;
+}
+#rand{
+    -fx-padding: 30 50 30 50;
+}
+#reset{
+    -fx-padding: 30 50 30 50;
 }
 /**
  * Write CSS code in this file to style your JavaFX user interface

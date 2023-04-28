@@ -7,6 +7,7 @@ import com.comp301.a09akari.model.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class AppLauncher extends Application {
@@ -31,13 +32,15 @@ public class AppLauncher extends Application {
     MainView view = new MainView(_model, _controller);
     // stage stuff
     stage.setTitle("Light up");
-    // pane?
-    // StackPane pane = new StackPane();
     // scene
     Scene scene = view.getScene();
+//    scene.setFill(Color.DARKGRAY);
     stage.setScene(scene);
-    stage.setResizable(true);
+//    stage.setWidth(600);
+//    stage.setHeight(600);
+    stage.setFullScreen(true);
     // display stage
+//    stage.sizeToScene();
     stage.show();
   }
 }
