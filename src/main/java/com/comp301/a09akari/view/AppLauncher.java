@@ -34,13 +34,13 @@ public class AppLauncher extends Application {
     stage.setTitle("Light up");
     // scene
     Scene scene = view.getScene();
-//    scene.setFill(Color.DARKGRAY);
+    //    scene.setFill(Color.DARKGRAY);
     stage.setScene(scene);
-//    stage.setWidth(600);
-//    stage.setHeight(600);
+    //    stage.setWidth(600);
+    //    stage.setHeight(600);
     stage.setFullScreen(true);
     // display stage
-//    stage.sizeToScene();
+    //    stage.sizeToScene();
     stage.show();
   }
 }

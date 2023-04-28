@@ -86,7 +86,7 @@ public class ModelImpl implements Model {
         return true;
       }
     }
-    if(isLit){
+    if (isLit) {
       return true;
     }
     // bott to mid
@@ -101,7 +101,7 @@ public class ModelImpl implements Model {
         isLit = false;
       }
     }
-    if(isLit){
+    if (isLit) {
       return true;
     }
     // what if there's a wall at the last spot and I switch isLit it false -> only index inward
@@ -119,7 +119,7 @@ public class ModelImpl implements Model {
         return true;
       }
     }
-    if(isLit){
+    if (isLit) {
       return true;
     }
     // right to mid
